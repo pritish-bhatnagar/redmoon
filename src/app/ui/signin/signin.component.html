@@ -1,0 +1,48 @@
+<body>
+  
+{{state | json}}
+
+<div class="content">
+  
+<form  (submit)="onSignInClick()">
+  
+
+
+<!-- <p *ngIf="validation" class="check">Please Wait...</p> -->
+
+
+<!-- <mat-form-field appearance="fill"></mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Email</mat-label>
+  <input matInput placeholder="email">
+  <mat-icon matSuffix>email</mat-icon>
+</mat-form-field> -->
+
+
+<h2 class="h2">LOGIN</h2>
+
+  <mat-form-field appearance="outline" [color]="state.emailError.length ? 'warn': 'primary' ">
+    
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="abc@xyz.com" [disabled]="state.isLoading" required name="email" (change)="onEmailChange($event)" [value]="state.email" >
+    <mat-icon matSuffix [color]="state.emailError.length ? 'warn': 'primary' ">email</mat-icon>
+    <mat-hint *ngIf="state.emailError.length">{{state.emailError}}</mat-hint>
+      
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" [color]="state.emailError.length ? 'warn': 'primary' ">
+    <mat-label>Enter your password</mat-label>
+    <input matInput [disabled]="state.isLoading" required name="password" (change)="onPasswordChange($event)" [value]="state.password">
+    <button mat-icon-button matSuffix>
+      <!-- <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+    </button>
+    <mat-hint *ngIf="state.passwordError.length">{{state.passwordError}}</mat-hint>
+  </mat-form-field>
+  
+  <button mat-raised-button type="submit" value="Sign In" [disabled]="state.isLoading">Sign In</button>
+</form>
+
+
+
+</div>
+</body>
