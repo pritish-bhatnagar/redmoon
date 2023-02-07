@@ -6,7 +6,4 @@ type User = {
   isActive: boolean;
 }
 
-type Data={
-  
-}
-export type { User, Data }
+export type { User }

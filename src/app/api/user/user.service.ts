@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Api, delay } from '../api';
 import { GetAllResponse } from './dto/get-all.dto';
-import { User, Data } from './dto/user.dto';
+import { User } from './dto/user.dto';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
+import { Result, UserDataRespose } from './dto/user-data.dto';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends Api{
+export class UserService extends Api {
 
   basePath: string = '/users';
-  data: any;
 
   constructor(private http: HttpClient) { super(); }
 
@@ -34,10 +34,9 @@ export class UserService extends Api{
   async logout() {
     await delay(3);
   }
-  async getUserData(): Promise<Object>{
-    this.data=firstValueFrom(this.http.get(this.baseUrl));
-    return this.data;
+  async getUserData(): Promise<Result[]> {
+    return firstValueFrom(this.http.get<UserDataRespose>(this.baseUrl).pipe(map(value => value.results)));
   }
-  
+
 }
 

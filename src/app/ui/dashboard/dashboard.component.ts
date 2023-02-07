@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FResult } from 'src/app/domain/model/user-data.model';
 import { DashboardViewModel } from './dashboard.viewmodel';
 
 @Component({
@@ -11,14 +12,13 @@ import { DashboardViewModel } from './dashboard.viewmodel';
 export class DashboardComponent implements OnInit {
 
   isLoading: boolean = false;
-  data: any;
-
+data: FResult[]=[];
   constructor(private readonly router: Router, private readonly viewModel: DashboardViewModel) { }
 
-  ngOnInit() {
-     console.log(this.viewModel.getUserData());
-     this.data=this.viewModel.getUserData();
-     
+  async ngOnInit() {
+     console.log(await this.viewModel.getUserData());
+     this.data=await this.viewModel.getUserData()
+    console.log(this.data);
   }
 
   async logout() {

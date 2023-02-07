@@ -1,6 +1,6 @@
 
 abstract class Api {
-  baseUrl: string = 'https://random-data-api.com/api/v2/users?size=2 ';
+  baseUrl: string = 'https://randomuser.me/api/?results=50&gender=female'
 
   abstract basePath: string;
 
